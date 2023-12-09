@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_como_un_pro/components/components.dart';
+import 'package:flutter_como_un_pro/utils/pokemon_utils.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,6 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      showSemanticsDebugger: true,
       title: 'Pokedex App',
       home: Scaffold(
         appBar: AppBar(
@@ -34,47 +38,15 @@ class _HomePageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: SingleChildScrollView(
         child: Center(
           child: Column(
-            children: [
-              Placeholder(
-                fallbackHeight: 200,
-                fallbackWidth: 200,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Placeholder(
-                fallbackHeight: 200,
-                fallbackWidth: 200,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Placeholder(
-                fallbackHeight: 200,
-                fallbackWidth: 200,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Placeholder(
-                fallbackHeight: 200,
-                fallbackWidth: 200,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Placeholder(
-                fallbackHeight: 200,
-                fallbackWidth: 200,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-            ],
+            children: pokemonList.map(
+              (pokemon) {
+                return PokemonCard(pokemon: pokemon);
+              },
+            ).toList(),
           ),
         ),
       ),

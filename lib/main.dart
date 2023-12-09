@@ -7,59 +7,77 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Flutter Demo',
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+    return MaterialApp(
+      title: 'Pokedex App',
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.red[800],
+          title: const Text(
+            "Pokedex",
+            style: TextStyle(
+              fontFamily: 'Pokemon-Solid',
+              color: Colors.white,
+              fontSize: 30,
+            ),
+          ),
+        ),
+        body: const _HomePageBody(),
+      ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+class _HomePageBody extends StatelessWidget {
+  const _HomePageBody();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+    return const SafeArea(
+      child: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              Placeholder(
+                fallbackHeight: 200,
+                fallbackWidth: 200,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Placeholder(
+                fallbackHeight: 200,
+                fallbackWidth: 200,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Placeholder(
+                fallbackHeight: 200,
+                fallbackWidth: 200,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Placeholder(
+                fallbackHeight: 200,
+                fallbackWidth: 200,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Placeholder(
+                fallbackHeight: 200,
+                fallbackWidth: 200,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+            ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

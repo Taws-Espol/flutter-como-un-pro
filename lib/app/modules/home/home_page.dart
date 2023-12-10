@@ -11,7 +11,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         title: const Text("Caramel Coffee"),
       ),
       body: const Contenido(),
@@ -45,37 +44,40 @@ class Contenido extends StatelessWidget {
   Widget build(BuildContext context) {
     const isDisabled = false;
     const colDivider = SizedBox(height: 8);
+    final customText = Theme.of(context).extension<CustomText>()!;
+    final customColor = Theme.of(context).extension<CustomColor>()!;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: ListView(
         children: [
           Text(
             "Hola, Axell",
+            style: customText.bodyText1_bold,
           ),
-          // ElevatedButton(
-          //   onPressed: isDisabled ? null : () {},
-          //   child: const Text('Elevated'),
-          // ),
-          // colDivider,
-          // FilledButton(
-          //   onPressed: isDisabled ? null : () {},
-          //   child: const Text('Filled'),
-          // ),
-          // colDivider,
-          // FilledButton.tonal(
-          //   onPressed: isDisabled ? null : () {},
-          //   child: const Text('Filled tonal'),
-          // ),
-          // colDivider,
-          // OutlinedButton(
-          //   onPressed: isDisabled ? null : () {},
-          //   child: const Text('Outlined'),
-          // ),
-          // colDivider,
-          // TextButton(
-          //   onPressed: isDisabled ? null : () {},
-          //   child: const Text('Text'),
-          // ),
+          ElevatedButton(
+            onPressed: isDisabled ? null : () {},
+            child: const Text('Elevated'),
+          ),
+          colDivider,
+          FilledButton(
+            onPressed: isDisabled ? null : () {},
+            child: const Text('Filled'),
+          ),
+          colDivider,
+          FilledButton.tonal(
+            onPressed: isDisabled ? null : () {},
+            child: const Text('Filled tonal'),
+          ),
+          colDivider,
+          OutlinedButton(
+            onPressed: isDisabled ? null : () {},
+            child: const Text('Outlined'),
+          ),
+          colDivider,
+          TextButton(
+            onPressed: isDisabled ? null : () {},
+            child: const Text('Text'),
+          ),
           SizedBox(height: 16),
           CardBalance(),
           SizedBox(height: 16),

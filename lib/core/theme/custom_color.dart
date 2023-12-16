@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 const colorLight = CustomColor(
-  backgroundPrimaryColor: Color(0xffffffff),
+  backgroundPrimaryColor: Color(0xff623306),
   backgroundSecondaryColor: Color(0xffffffff),
 );
 
 const colorDark = CustomColor(
-  backgroundPrimaryColor: Color(0xff333333),
+  backgroundPrimaryColor: Color(0xff623306),
   backgroundSecondaryColor: Color(0xff333333),
 );
 

@@ -173,3 +173,70 @@ class _HeaderRedondoPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }
+
+class HeaderOla extends StatelessWidget {
+  const HeaderOla({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final customColor = Theme.of(context).extension<CustomColor>()!;
+    final size = MediaQuery.of(context).size;
+
+    return Container(
+      // color: customColor.backgroundPrimaryColor,
+      width: double.infinity,
+      height: double.infinity,
+      child: CustomPaint(
+        painter: _HeaderOlaPainter(
+          color: customColor.backgroundPrimaryColor,
+        ),
+      ),
+    );
+  }
+}
+
+class _HeaderOlaPainter extends CustomPainter {
+  final Color color;
+
+  _HeaderOlaPainter({required this.color});
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Rect rect =
+        Rect.fromCircle(center: Offset(0, size.height * 0.25), radius: 200);
+
+    const Gradient gradiente = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Colors.lightBlueAccent,
+        Colors.blue,
+      ],
+    );
+
+    final lapiz = Paint();
+    lapiz.shader = gradiente.createShader(rect);
+    lapiz.color = color;
+    lapiz.style = PaintingStyle.fill;
+    lapiz.strokeWidth = 5;
+
+    final path = Path();
+    path.lineTo(0, size.height * 0.50);
+    path.quadraticBezierTo(
+      size.width * 0.25,
+      size.height * 0.45,
+      size.width * 0.5,
+      size.height * 0.50,
+    );
+    path.quadraticBezierTo(
+      size.width * 0.75,
+      size.height * 0.55,
+      size.width,
+      size.height * 0.50,
+    );
+    path.lineTo(size.width, 0);
+    canvas.drawPath(path, lapiz);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+}

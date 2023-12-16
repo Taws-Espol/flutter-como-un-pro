@@ -52,17 +52,22 @@ class HeaderDiagonal extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       child: CustomPaint(
-        painter: _HeaderDiagonalPainter(),
+        painter: _HeaderDiagonalPainter(
+          color: customColor.backgroundPrimaryColor,
+        ),
       ),
     );
   }
 }
 
 class _HeaderDiagonalPainter extends CustomPainter {
+  final Color color;
+
+  _HeaderDiagonalPainter({required this.color});
   @override
   void paint(Canvas canvas, Size size) {
     final lapiz = Paint();
-    lapiz.color = Colors.red;
+    lapiz.color = color;
     lapiz.style = PaintingStyle.fill;
     lapiz.strokeWidth = 20;
 
@@ -72,6 +77,96 @@ class _HeaderDiagonalPainter extends CustomPainter {
     path.lineTo(size.width, 0);
     path.lineTo(0, 0);
 
+    canvas.drawPath(path, lapiz);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+}
+
+class HeaderRombo extends StatelessWidget {
+  const HeaderRombo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final customColor = Theme.of(context).extension<CustomColor>()!;
+    final size = MediaQuery.of(context).size;
+
+    return Container(
+      // color: customColor.backgroundPrimaryColor,
+      width: double.infinity,
+      height: double.infinity,
+      child: CustomPaint(
+        painter: _HeaderRomboPainter(
+          color: customColor.backgroundPrimaryColor,
+        ),
+      ),
+    );
+  }
+}
+
+class _HeaderRomboPainter extends CustomPainter {
+  final Color color;
+
+  _HeaderRomboPainter({required this.color});
+  @override
+  void paint(Canvas canvas, Size size) {
+    final lapiz = Paint();
+    lapiz.color = color;
+    lapiz.style = PaintingStyle.fill;
+    lapiz.strokeWidth = 10;
+
+    final path = Path();
+    path.lineTo(0, size.height * 0.25);
+    path.lineTo(size.width * 0.5, size.height * 0.30);
+    path.lineTo(size.width, size.height * 0.25);
+    path.lineTo(size.width, 0);
+    // path.lineTo(0, 0);
+
+    canvas.drawPath(path, lapiz);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+}
+
+class HeaderRedondo extends StatelessWidget {
+  const HeaderRedondo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final customColor = Theme.of(context).extension<CustomColor>()!;
+    final size = MediaQuery.of(context).size;
+
+    return Container(
+      // color: customColor.backgroundPrimaryColor,
+      width: double.infinity,
+      height: double.infinity,
+      child: CustomPaint(
+        painter: _HeaderRedondoPainter(
+          color: customColor.backgroundPrimaryColor,
+        ),
+      ),
+    );
+  }
+}
+
+class _HeaderRedondoPainter extends CustomPainter {
+  final Color color;
+
+  _HeaderRedondoPainter({required this.color});
+  @override
+  void paint(Canvas canvas, Size size) {
+    final lapiz = Paint();
+    lapiz.color = color;
+    lapiz.style = PaintingStyle.fill;
+    lapiz.strokeWidth = 10;
+
+    final path = Path();
+    path.lineTo(0, size.height * 0.30);
+    path.quadraticBezierTo(
+        size.width * 0.50, size.height * 0.45, size.width, size.height * 0.30);
+    path.lineTo(size.width, 0);
     canvas.drawPath(path, lapiz);
   }
 

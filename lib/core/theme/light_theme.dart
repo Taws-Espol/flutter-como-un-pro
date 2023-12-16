@@ -7,29 +7,14 @@ class LightTheme {
     brightness: Brightness.light,
     scaffoldBackgroundColor: Colors.white,
     textTheme: const TextTheme(
-      // titleLarge: TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
       bodyMedium: TextStyle(fontSize: 14),
     ),
-    // appBarTheme: AppBarTheme,
     appBarTheme: appBarTheme,
     bottomNavigationBarTheme: bottomNavigationBarTheme,
-    textButtonTheme: textButtonTheme,
     extensions: [
       colorLight,
-      textlight,
+      textDark,
     ],
-  );
-
-  static final textButtonTheme = TextButtonThemeData(
-    style: ButtonStyle(
-      // backgroundColor: MaterialStateProperty.all(Colors.red),
-      foregroundColor: MaterialStateProperty.all(Color(0xffC78D35)),
-      textStyle: MaterialStateProperty.all(
-        const TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    ),
   );
 
   static const appBarTheme = AppBarTheme(

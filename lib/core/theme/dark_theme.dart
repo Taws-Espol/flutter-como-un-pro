@@ -7,14 +7,13 @@ class DarkTheme {
     brightness: Brightness.dark,
     scaffoldBackgroundColor: Colors.black,
     textTheme: const TextTheme(
-      // titleLarge: TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
       bodyMedium: TextStyle(fontSize: 14),
     ),
     appBarTheme: appBarTheme,
     bottomNavigationBarTheme: bottomNavigationBarTheme,
     extensions: [
-      textDark,
       colorDark,
+      textDark,
     ],
   );
 

@@ -1,44 +1,42 @@
-// ignore_for_file: non_constant_identifier_names
-
 import 'package:flutter/material.dart';
-import 'package:flutter_como_un_pro/core/theme/custom_color.dart';
 
 CustomText textDark = const CustomText(
-  bodyText1_bold: TextStyle(
+  bodyText1Bold: TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.bold,
     letterSpacing: 0.5,
     color: Colors.blue,
   ),
-  bodyText2_bold: TextStyle(),
+  bodyText2Bold: TextStyle(),
 );
 
 CustomText textlight = const CustomText(
-  bodyText1_bold: TextStyle(
+  bodyText1Bold: TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.bold,
     letterSpacing: 0.5,
     color: Colors.red,
   ),
-  bodyText2_bold: TextStyle(),
+  bodyText2Bold: TextStyle(),
 );
 
 class CustomText extends ThemeExtension<CustomText> {
   const CustomText({
-    required this.bodyText1_bold,
-    required this.bodyText2_bold,
+    required this.bodyText1Bold,
+    required this.bodyText2Bold,
   });
 
-  final TextStyle bodyText1_bold;
-  final TextStyle bodyText2_bold;
+  final TextStyle bodyText1Bold;
+  final TextStyle bodyText2Bold;
 
   @override
   CustomText copyWith({
-    TextStyle? bodyText1_bold,
+    TextStyle? bodyText1Bold,
+    TextStyle? bodyText2Bold,
   }) {
     return CustomText(
-      bodyText1_bold: bodyText1_bold ?? this.bodyText1_bold,
-      bodyText2_bold: bodyText2_bold ?? this.bodyText2_bold,
+      bodyText1Bold: bodyText1Bold ?? this.bodyText1Bold,
+      bodyText2Bold: bodyText2Bold ?? this.bodyText2Bold,
     );
   }
 
@@ -48,8 +46,8 @@ class CustomText extends ThemeExtension<CustomText> {
       return this;
     }
     return CustomText(
-      bodyText1_bold: TextStyle.lerp(bodyText1_bold, other.bodyText1_bold, t)!,
-      bodyText2_bold: TextStyle.lerp(bodyText2_bold, other.bodyText2_bold, t)!,
+      bodyText1Bold: TextStyle.lerp(bodyText1Bold, other.bodyText1Bold, t)!,
+      bodyText2Bold: TextStyle.lerp(bodyText2Bold, other.bodyText2Bold, t)!,
     );
   }
 }

@@ -1,8 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_como_un_pro/app/providers/theme_provider.dart';
 import 'package:flutter_como_un_pro/core/theme/custom_color.dart';
 import 'package:flutter_como_un_pro/core/theme/custom_text.dart';
+import 'package:flutter_como_un_pro/core/theme/dark_theme.dart';
+import 'package:flutter_como_un_pro/core/theme/light_theme.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,6 +16,20 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Caramel Coffee"),
+        actions: [
+          Consumer<ThemeProvider>(
+            builder: (context, themeChanger, _) => Switch.adaptive(
+              value: themeChanger.getTheme() == DarkTheme().theme,
+              onChanged: (value) {
+                if (value) {
+                  themeChanger.setTheme(DarkTheme().theme);
+                } else {
+                  themeChanger.setTheme(LightTheme().theme);
+                }
+              },
+            ),
+          ),
+        ],
       ),
       body: const Contenido(),
       bottomNavigationBar: BottomNavigationBar(
@@ -43,48 +61,27 @@ class Contenido extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const isDisabled = false;
-    const colDivider = SizedBox(height: 8);
+    const colDivider = SizedBox(height: 16);
     final customText = Theme.of(context).extension<CustomText>()!;
-    final customColor = Theme.of(context).extension<CustomColor>()!;
+    // final customColor = Theme.of(context).extension<CustomColor>()!;
+    final themeChanger = Provider.of<ThemeProvider>(context, listen: false);
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: ListView(
         children: [
           Text(
             "Hola, Axell",
-            style: customText.bodyText1_bold,
-          ),
-          ElevatedButton(
-            onPressed: isDisabled ? null : () {},
-            child: const Text('Elevated'),
+            style: customText.bodyText1Bold,
           ),
           colDivider,
-          FilledButton(
-            onPressed: isDisabled ? null : () {},
-            child: const Text('Filled'),
-          ),
           colDivider,
-          FilledButton.tonal(
-            onPressed: isDisabled ? null : () {},
-            child: const Text('Filled tonal'),
-          ),
-          colDivider,
-          OutlinedButton(
-            onPressed: isDisabled ? null : () {},
-            child: const Text('Outlined'),
-          ),
-          colDivider,
-          TextButton(
-            onPressed: isDisabled ? null : () {},
-            child: const Text('Text'),
-          ),
-          SizedBox(height: 16),
           CardBalance(),
-          SizedBox(height: 16),
+          colDivider,
           Placeholder(
             fallbackHeight: 26,
           ),
-          SizedBox(height: 16),
+          colDivider,
           Wrap(
             spacing: 16,
             alignment: WrapAlignment.center,
@@ -100,13 +97,13 @@ class Contenido extends StatelessWidget {
               Categoria(nombre: "Vasos"),
             ],
           ),
-          SizedBox(height: 16),
+          colDivider,
           ProductosDestacados(),
-          SizedBox(height: 16),
+          colDivider,
           ProductosDestacados(),
-          SizedBox(height: 16),
+          colDivider,
           ProductosDestacados(),
-          SizedBox(height: 16),
+          colDivider,
           ProductosDestacados()
         ],
       ),

@@ -25,6 +25,7 @@ class CustomColor extends ThemeExtension<CustomColor> {
   @override
   CustomColor copyWith({
     Color? backgroundPrimaryColor,
+    Color? backgroundSecondaryColor,
   }) {
     return CustomColor(
       backgroundPrimaryColor:

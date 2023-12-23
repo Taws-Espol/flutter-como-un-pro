@@ -7,7 +7,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: HeaderOla(),
+      body: HeaderDiagonal(),
     );
   }
 }

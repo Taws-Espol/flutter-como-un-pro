@@ -1,14 +1,14 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-import 'package:flutter/material.dart';
-import 'package:flutter_como_un_pro/app/providers/theme_provider.dart';
-import 'package:flutter_como_un_pro/core/theme/custom_color.dart';
-import 'package:flutter_como_un_pro/core/theme/custom_text.dart';
-import 'package:flutter_como_un_pro/core/theme/dark_theme.dart';
-import 'package:flutter_como_un_pro/core/theme/light_theme.dart';
 import 'package:provider/provider.dart';
 
+import 'package:flutter/material.dart';
+
+import 'package:flutter_como_un_pro/app/providers/theme_provider.dart';
+import 'package:flutter_como_un_pro/app/widgets/widgets.dart';
+import 'package:flutter_como_un_pro/core/theme/dark_theme.dart';
+import 'package:flutter_como_un_pro/core/theme/light_theme.dart';
+
 class HomePage extends StatelessWidget {
+  static const routeName = "/home";
   const HomePage({super.key});
 
   @override
@@ -60,27 +60,29 @@ class Contenido extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const isDisabled = false;
     const colDivider = SizedBox(height: 16);
-    final customText = Theme.of(context).extension<CustomText>()!;
-    // final customColor = Theme.of(context).extension<CustomColor>()!;
-    final themeChanger = Provider.of<ThemeProvider>(context, listen: false);
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: ListView(
-        children: [
-          Text(
-            "Hola, Axell",
-            style: customText.bodyText1Bold,
+        children: const [
+          Padding(
+            padding: EdgeInsets.only(top: 16),
+            child: Text(
+              "Hola, Axell",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 0.5,
+                color: Colors.blue,
+              ),
+            ),
           ),
           colDivider,
           colDivider,
-          CardBalance(),
+          CustomCardBalance(),
           colDivider,
-          Placeholder(
-            fallbackHeight: 26,
-          ),
+          CustomSearchBar(),
           colDivider,
           Wrap(
             spacing: 16,
@@ -100,11 +102,6 @@ class Contenido extends StatelessWidget {
           colDivider,
           ProductosDestacados(),
           colDivider,
-          ProductosDestacados(),
-          colDivider,
-          ProductosDestacados(),
-          colDivider,
-          ProductosDestacados()
         ],
       ),
     );
@@ -124,8 +121,8 @@ class ProductosDestacados extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Productos Destacados"),
-          SizedBox(height: 8),
+          const Text("Productos Destacados"),
+          const SizedBox(height: 8),
           SizedBox(
             height: 140,
             child: ListView.builder(
@@ -139,13 +136,14 @@ class ProductosDestacados extends StatelessWidget {
                       fallbackHeight: 100,
                       fallbackWidth: 160,
                     ),
-                    SizedBox(
-                      width: 160,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [Text("Capuchino"), Text("\$2.00")],
-                      ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Capuchino"),
+                        SizedBox(width: 8),
+                        Text("\$2.00"),
+                      ],
                     )
                   ],
                 ),
@@ -173,28 +171,9 @@ class Categoria extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Placeholder(
-            fallbackHeight: 40,
-            fallbackWidth: 40,
-          ),
-          Text(nombre)
+          const CustomCoffeeLogo(),
+          Text(nombre),
         ],
-      ),
-    );
-  }
-}
-
-class CardBalance extends StatelessWidget {
-  const CardBalance({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 200,
-      child: Placeholder(
-        fallbackHeight: 160,
       ),
     );
   }

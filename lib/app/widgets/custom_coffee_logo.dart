@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomCoffeeLogo extends StatelessWidget {
-  const CustomCoffeeLogo({super.key});
+  const CustomCoffeeLogo({
+    super.key,
+    this.beverageCategoryName,
+  });
+
+  final String? beverageCategoryName;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(8),
-      onTap: () {
-        // ScaffoldMessenger.of(context).showSnackBar(
-        //   const SnackBar(
-        //     content: Text("Hola"),
-        //   ),
-        // );
-        print('Hola');
-      },
+      onTap: beverageCategoryName != null
+          ? () {
+              context.pushNamed('/beverage',
+                  extra: {'beverageName': beverageCategoryName});
+            }
+          : null,
       child: Stack(
         children: [
           SizedBox(

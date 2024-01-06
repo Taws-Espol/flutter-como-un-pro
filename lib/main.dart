@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_como_un_pro/app/providers/theme_provider.dart';
+import 'package:flutter_como_un_pro/app/providers/providers.dart';
 import 'package:flutter_como_un_pro/config/router/app_router.dart';
 import 'package:flutter_como_un_pro/core/theme/light_theme.dart';
 import 'package:provider/provider.dart';
@@ -18,11 +18,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      title: 'Caramel Coffee',
-      routerConfig: appRouter,
-      theme: Provider.of<ThemeProvider>(context).getTheme(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<BeverageProvider>(
+          create: (_) => BeverageProvider(),
+        ),
+        ChangeNotifierProvider<ShoppingCartProvider>(
+          create: (_) => ShoppingCartProvider(),
+        )
+      ],
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        title: 'Caramel Coffee',
+        routerConfig: appRouter,
+        theme: Provider.of<ThemeProvider>(context).getTheme(),
+      ),
     );
   }
 }

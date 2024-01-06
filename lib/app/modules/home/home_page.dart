@@ -171,7 +171,9 @@ class Categoria extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const CustomCoffeeLogo(),
+          CustomCoffeeLogo(
+            beverageCategoryName: nombre,
+          ),
           Text(nombre),
         ],
       ),

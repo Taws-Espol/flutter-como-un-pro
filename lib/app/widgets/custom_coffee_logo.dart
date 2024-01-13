@@ -32,9 +32,11 @@ class CustomCoffeeLogo extends StatelessWidget {
           ),
           SizedBox(
             child: Image.asset(
+              key: const Key('coffee_logo'),
               "assets/coffee.png",
               height: 54,
               width: 54,
+              semanticLabel: '$beverageCategoryName coffee',
             ),
           )
         ],

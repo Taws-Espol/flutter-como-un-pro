@@ -85,6 +85,7 @@ class _BeveragePageBody extends StatelessWidget {
       itemBuilder: (context, index) {
         final Beverage beverage = beverageItems![index];
         return InkWell(
+          key: Key(beverage.name),
           onTap: () {},
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
@@ -123,10 +124,12 @@ class _BeveragePageBody extends StatelessWidget {
 
                 //* Botón de añadir (+)
                 IconButton(
-                    onPressed: () {
-                      shoppingCartProvider.addItem(beverage);
-                    },
-                    icon: const Icon(Icons.add))
+                  key: Key('item_$index'),
+                  onPressed: () {
+                    shoppingCartProvider.addItem(beverage);
+                  },
+                  icon: const Icon(Icons.add),
+                )
               ],
             ),
           ),

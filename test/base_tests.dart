@@ -14,7 +14,7 @@ class BaseTest {
           create: (_) => ShoppingCartProvider(),
         ),
         ChangeNotifierProvider<ThemeProvider>(
-          create: (_) => ThemeProvider(LightTheme().theme),
+          create: (_) => ThemeProvider(isDarkMode: false),
         ),
       ],
       child: MaterialApp(

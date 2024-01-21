@@ -1,3 +1,4 @@
+import 'package:flutter_como_un_pro/core/services/shared_preferences/configuracion_storage.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter/material.dart';
@@ -8,49 +9,26 @@ import 'package:flutter_como_un_pro/core/theme/dark_theme.dart';
 import 'package:flutter_como_un_pro/core/theme/light_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   static const routeName = "/home";
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
   Widget build(BuildContext context) {
+    final ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Caramel Coffee"),
         actions: [
-          FutureBuilder(
-            future: SharedPreferences.getInstance(),
-            builder: (_, prefs) {
-              final isDarkMode = prefs.data?.getBool("isDarkMode") ?? false;
-
-              return Switch.adaptive(
-                value: isDarkMode,
-                onChanged: (value) {
-                  print("Creeme es cierto: ${isDarkMode} - ${value} ");
-                  prefs.data?.setBool("isDarkMode", value);
-                  setState(() {});
-                },
-              );
+          Switch.adaptive(
+            value: ConfiguracionStorage.isDarkMode,
+            onChanged: (value) {
+              ConfiguracionStorage.isDarkMode = value;
+              value
+                  ? themeProvider.setDarkTheme()
+                  : themeProvider.setLightTheme();
             },
           ),
-
-          // Consumer<ThemeProvider>(
-          //   builder: (context, themeChanger, _) => Switch.adaptive(
-          //     value: themeChanger.getTheme() == DarkTheme().theme,
-          //     onChanged: (value) {
-          //       if (value) {
-          //         themeChanger.setTheme(DarkTheme().theme);
-          //       } else {
-          //         themeChanger.setTheme(LightTheme().theme);
-          //       }
-          //     },
-          //   ),
-          // ),
         ],
       ),
       body: const Contenido(),

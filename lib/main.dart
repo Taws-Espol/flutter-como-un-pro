@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_como_un_pro/app/providers/providers.dart';
-import 'package:flutter_como_un_pro/config/router/app_router.dart';
+import 'package:flutter_como_un_pro/core/config/router/app_router.dart';
+import 'package:flutter_como_un_pro/core/theme/dark_theme.dart';
 import 'package:flutter_como_un_pro/core/theme/light_theme.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  runApp(
-    ChangeNotifierProvider<ThemeProvider>(
-      create: (_) => ThemeProvider(LightTheme().theme), // Tema por defecto
-      child: const MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -27,11 +24,17 @@ class MyApp extends StatelessWidget {
           create: (_) => ShoppingCartProvider(),
         )
       ],
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        title: 'Caramel Coffee',
-        routerConfig: appRouter,
-        theme: Provider.of<ThemeProvider>(context).getTheme(),
+      child: FutureBuilder(
+        future: SharedPreferences.getInstance(),
+        builder: (_, prefs) {
+          final isDarkMode = prefs.data?.getBool("isDarkMode") ?? false;
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            title: 'Caramel Coffee',
+            routerConfig: appRouter,
+            theme: isDarkMode ? DarkTheme().theme : LightTheme().theme,
+          );
+        },
       ),
     );
   }

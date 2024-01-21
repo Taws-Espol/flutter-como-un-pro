@@ -28,12 +28,13 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  badges: ^3.1.2
-  cupertino_icons: ^1.0.6
   flutter:
     sdk: flutter
+  badges: ^3.1.2
+  cupertino_icons: ^1.0.6
   go_router: ^13.0.1
   provider: ^6.1.1
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_lints: ^3.0.0

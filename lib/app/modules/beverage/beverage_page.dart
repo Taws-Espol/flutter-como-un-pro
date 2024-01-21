@@ -6,7 +6,7 @@ import 'package:flutter_como_un_pro/app/widgets/widgets.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:provider/provider.dart';
 
-import '../../../models/models.dart';
+import '../../../core/models/models.dart';
 
 class BeveragePage extends StatelessWidget {
   static const routeName = '/beverage';

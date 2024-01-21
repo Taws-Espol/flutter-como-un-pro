@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_como_un_pro/models/models.dart';
+import 'package:flutter_como_un_pro/core/models/models.dart';
 
 class BeverageProvider with ChangeNotifier {
   final Map<String, List<Beverage>> _beverageItems = {

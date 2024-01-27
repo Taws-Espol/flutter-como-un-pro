@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:flutter_como_un_pro/app/providers/beverage/beverage_provider.dart';
 // import 'package:flutter_como_un_pro/app/providers/shared/shopping_cart_provider.dart';
-import 'package:flutter_como_un_pro/app/widgets/widgets.dart';
 
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter_como_un_pro/logic/cubit/beverage_cubit.dart';
 import 'package:flutter_como_un_pro/logic/cubit/shopping_cart_cubit.dart';
+import 'package:flutter_como_un_pro/presentation/shared/custom_coffee_logo.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/models/models.dart';
 
-class BeveragePage extends StatelessWidget {
+class BeverageScreen extends StatelessWidget {
   static const routeName = '/beverage';
-  const BeveragePage({
+  const BeverageScreen({
     super.key,
     required this.beverageCategoryName,
   });
@@ -34,7 +34,7 @@ class BeveragePage extends StatelessWidget {
         if (state.isLoading) {
           return const Center(child: CircularProgressIndicator());
         }
-        return _BeveragePageBody(beverageItems);
+        return _BeverageScreenBody(beverageItems);
       }),
       floatingActionButton: const _CustomFloatingActionButton(),
     );
@@ -73,8 +73,8 @@ class _CustomFloatingActionButton extends StatelessWidget {
   }
 }
 
-class _BeveragePageBody extends StatelessWidget {
-  const _BeveragePageBody(this.beverageItems);
+class _BeverageScreenBody extends StatelessWidget {
+  const _BeverageScreenBody(this.beverageItems);
 
   final List<Beverage>? beverageItems;
 

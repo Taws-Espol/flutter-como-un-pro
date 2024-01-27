@@ -2,14 +2,14 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class PlaygroundPage2 extends StatefulWidget {
-  const PlaygroundPage2({super.key});
+class PlaygroundScreen2 extends StatefulWidget {
+  const PlaygroundScreen2({super.key});
 
   @override
-  State<PlaygroundPage2> createState() => _PlaygroundPage2State();
+  State<PlaygroundScreen2> createState() => _PlaygroundScreen2State();
 }
 
-class _PlaygroundPage2State extends State<PlaygroundPage2>
+class _PlaygroundScreen2State extends State<PlaygroundScreen2>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation<double> angle;

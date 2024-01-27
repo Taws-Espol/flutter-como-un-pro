@@ -1,16 +1,15 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_como_un_pro/app/widgets/GraficoArco.dart';
 
-class PlaygroundPage extends StatefulWidget {
-  const PlaygroundPage({super.key});
+class PlaygroundScreen extends StatefulWidget {
+  const PlaygroundScreen({super.key});
 
   @override
-  State<PlaygroundPage> createState() => _PlaygroundPageState();
+  State<PlaygroundScreen> createState() => _PlaygroundScreenState();
 }
 
-class _PlaygroundPageState extends State<PlaygroundPage> {
+class _PlaygroundScreenState extends State<PlaygroundScreen> {
   Color randomColor = Colors.blue;
   double randomWidth = 300;
   double randomHeight = 100;

@@ -1,18 +1,20 @@
 import 'package:flutter_como_un_pro/core/services/shared_preferences/configuracion_storage.dart';
 import 'package:flutter_como_un_pro/logic/cubit/theme_cubit.dart';
+import 'package:flutter_como_un_pro/presentation/shared/custom_card_balance.dart';
+import 'package:flutter_como_un_pro/presentation/shared/custom_coffee_logo.dart';
+import 'package:flutter_como_un_pro/presentation/shared/custom_search_bar.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter/material.dart';
 
 // import 'package:flutter_como_un_pro/app/providers/theme_provider.dart';
-import 'package:flutter_como_un_pro/app/widgets/widgets.dart';
-class HomePage extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   static const routeName = "/home";
-  const HomePage({super.key});
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final themeCubit = context.read<ThemeCubit>();
+    final themeCubit = context.watch<ThemeCubit>();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Caramel Coffee"),

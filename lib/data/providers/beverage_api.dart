@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_como_un_pro/data/models/models.dart';
+import '../models/beverage/beverage_model.dart';
 
-class BeverageProvider with ChangeNotifier {
+class BeverageApi {
   final Map<String, List<Beverage>> _beverageItems = {
     'Frío': [
       Beverage(
@@ -55,11 +54,8 @@ class BeverageProvider with ChangeNotifier {
     ],
   };
 
-  BeverageProvider();
-
-  List<Beverage>? getBeverageByCategory(String category) {
-    if (!_beverageItems.containsKey(category)) return null;
-
-    return _beverageItems[category];
+  Future<Map<String, List<Beverage>>> getCompleteBeverageList() async {
+    await Future.delayed(Duration(seconds: 2));
+    return _beverageItems;
   }
 }

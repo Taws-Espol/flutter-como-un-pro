@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_como_un_pro/core/models/models.dart';
+import 'package:flutter_como_un_pro/data/models/models.dart';
 
 class ShoppingCartProvider with ChangeNotifier {
   List<Beverage>? _items = [];

@@ -2,12 +2,12 @@ part of 'beverage_cubit.dart';
 
 class BeverageState {
   Map<String, List<Beverage>>? beverageItems;
-  bool? isLoading;
+  bool isLoading;
   String? errorMessage;
 
   BeverageState({
     this.beverageItems,
-    this.isLoading,
+    this.isLoading = false,
     this.errorMessage,
   });
 

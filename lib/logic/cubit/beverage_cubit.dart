@@ -7,8 +7,9 @@ part 'beverage_state.dart';
 class BeverageCubit extends Cubit<BeverageState> {
   final BeverageRepository _beverageRepository;
 
-  BeverageCubit(super.initialState)
-      : _beverageRepository = BeverageRepository();
+  BeverageCubit()
+      : _beverageRepository = BeverageRepository(), // 1
+        super(BeverageState());
 
   Future<void> getCompleteBeverageList() async {
     emit(state.copyWith(isLoading: true));

@@ -1,21 +1,18 @@
 import 'package:flutter_como_un_pro/core/services/shared_preferences/configuracion_storage.dart';
+import 'package:flutter_como_un_pro/logic/cubit/theme_cubit.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_como_un_pro/app/providers/theme_provider.dart';
+// import 'package:flutter_como_un_pro/app/providers/theme_provider.dart';
 import 'package:flutter_como_un_pro/app/widgets/widgets.dart';
-import 'package:flutter_como_un_pro/core/theme/dark_theme.dart';
-import 'package:flutter_como_un_pro/core/theme/light_theme.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 class HomePage extends StatelessWidget {
   static const routeName = "/home";
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
+    final themeCubit = context.read<ThemeCubit>();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Caramel Coffee"),
@@ -24,9 +21,7 @@ class HomePage extends StatelessWidget {
             value: ConfiguracionStorage.isDarkMode,
             onChanged: (value) {
               ConfiguracionStorage.isDarkMode = value;
-              value
-                  ? themeProvider.setDarkTheme()
-                  : themeProvider.setLightTheme();
+              value ? themeCubit.setDarkTheme() : themeCubit.setLightTheme();
             },
           ),
         ],

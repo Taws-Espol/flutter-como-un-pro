@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_como_un_pro/app/providers/beverage/beverage_provider.dart';
-import 'package:flutter_como_un_pro/app/providers/shared/shopping_cart_provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:flutter_como_un_pro/app/providers/beverage/beverage_provider.dart';
+// import 'package:flutter_como_un_pro/app/providers/shared/shopping_cart_provider.dart';
 import 'package:flutter_como_un_pro/app/widgets/widgets.dart';
 
 import 'package:badges/badges.dart' as badges;
+import 'package:flutter_como_un_pro/logic/cubit/beverage_cubit.dart';
+import 'package:flutter_como_un_pro/logic/cubit/shopping_cart_cubit.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/models/models.dart';
@@ -18,19 +21,22 @@ class BeveragePage extends StatelessWidget {
   final String beverageCategoryName;
   @override
   Widget build(BuildContext context) {
-    final BeverageProvider beverageProvider =
-        Provider.of<BeverageProvider>(context);
-
-    List<Beverage>? beverageItems =
-        beverageProvider.getBeverageByCategory(beverageCategoryName);
+    final beverageCubit = context.read<BeverageCubit>();
+    beverageCubit.getCompleteBeverageList();
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Bebida de tipo: $beverageCategoryName'),
       ),
-      body: _BeveragePageBody(beverageItems),
-      floatingActionButton:
-          beverageItems != null ? const _CustomFloatingActionButton() : null,
+      body:
+          BlocBuilder<BeverageCubit, BeverageState>(builder: (context, state) {
+        final beverageItems = state.beverageItems?[beverageCategoryName];
+        if (state.isLoading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        return _BeveragePageBody(beverageItems);
+      }),
+      floatingActionButton: const _CustomFloatingActionButton(),
     );
   }
 }
@@ -40,16 +46,13 @@ class _CustomFloatingActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ShoppingCartProvider shoppingCartProvider =
-        Provider.of<ShoppingCartProvider>(context);
-
     return FloatingActionButton(
       tooltip: 'Carrito de compras',
       backgroundColor: const Color.fromRGBO(183, 85, 137, 1),
       onPressed: () {
-        for (var item in shoppingCartProvider.items!) {
-          print(item.name);
-        }
+        // for (var item in shoppingCartProvider.items!) {
+        //   print(item.name);
+        // }
       },
       child: badges.Badge(
         position: badges.BadgePosition.custom(
@@ -58,7 +61,12 @@ class _CustomFloatingActionButton extends StatelessWidget {
         ),
         badgeStyle: const badges.BadgeStyle(
             badgeColor: Colors.white, shape: badges.BadgeShape.circle),
-        badgeContent: Text('${shoppingCartProvider.itemsCount}'),
+        badgeContent: BlocBuilder<ShoppingCartCubit, ShoppingCartState>(
+          builder: (context, state) {
+            final items = state.items ?? [];
+            return Text('${items.length}');
+          },
+        ),
         child: const Icon(Icons.shopping_cart),
       ),
     );
@@ -77,8 +85,7 @@ class _BeveragePageBody extends StatelessWidget {
         child: Text('No hay bebidas disponibles'),
       );
     }
-    final ShoppingCartProvider shoppingCartProvider =
-        Provider.of<ShoppingCartProvider>(context);
+    final shoppingCubit = context.read<ShoppingCartCubit>();
 
     return ListView.builder(
       itemCount: beverageItems!.length,
@@ -126,7 +133,7 @@ class _BeveragePageBody extends StatelessWidget {
                 IconButton(
                   key: Key('item_$index'),
                   onPressed: () {
-                    shoppingCartProvider.addItem(beverage);
+                    shoppingCubit.addItem(beverage);
                   },
                   icon: const Icon(Icons.add),
                 )

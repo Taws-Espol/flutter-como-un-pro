@@ -1,6 +1,5 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_como_un_pro/data/models/beverage/beverage_model.dart';
-import 'package:meta/meta.dart';
 
 part 'shopping_cart_state.dart';
 

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "694177642707",
+    "project_id": "caramel-coffee",
+    "storage_bucket": "caramel-coffee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694177642707:android:f64dc7f4e6bc392840fc26",
+        "android_client_info": {
+          "package_name": "com.piogram.caramel_coffee"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3zybeFY-CN-AEbK_0NhULTKenuaPCDQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

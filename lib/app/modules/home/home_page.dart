@@ -1,3 +1,4 @@
+import 'package:flutter_como_un_pro/app/providers/authentication/authentication_provider.dart';
 import 'package:flutter_como_un_pro/core/services/shared_preferences/configuracion_storage.dart';
 import 'package:provider/provider.dart';
 
@@ -34,6 +35,12 @@ class HomePage extends StatelessWidget {
       body: const Contenido(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
+        onTap: (value) {
+          final AuthenticationProvider authProvider =
+              Provider.of<AuthenticationProvider>(context, listen: false);
+          authProvider.signInWithEmailAndPassword(
+              "fksaxell1997@gmail.com", "123456");
+        },
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.history),
